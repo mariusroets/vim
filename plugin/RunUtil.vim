@@ -615,11 +615,6 @@ set guitablabel=%{GuiTabLabel()}
 
 " {{{ Mappings
 autocmd TabEnter,SessionLoadPost *  call RefreshProjectPanelContent()
-nmap <F9> :call Make()<cr>
-nmap <S-F9> :call RunProgram()<cr>
-" Opens a previously saved session
-nmap <F3> :call ShowProjectPanel()<cr>:call RefreshProjectPanelContent("projectlist")<cr>
-nmap <F5> :call NextProjectPanelContent()<cr>
 nmap <leader>jr :call JumpToRunPage()<cr>
 nmap <leader>jm :call JumpToMakePage()<cr>
 nmap <leader>jb :call JumpBack()<cr>
