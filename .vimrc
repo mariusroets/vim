@@ -88,8 +88,8 @@ syntax enable
 set backspace=indent,eol,start
 set showmatch
 set cursorline
-highlight Cursorline cterm=NONE
-highlight Cursorline ctermbg=7
+"highlight Cursorline cterm=NONE
+"highlight Cursorline ctermbg=7
 set nrformats-=octal
 colorscheme solarized
 if has('gui_running')
@@ -117,9 +117,11 @@ let mapleader = ";"
 nmap <F2> :NERDTreeToggle<cr>
 nmap <S-F2> :NERDTreeFind<cr>
 nmap <F3> :TagbarToggle<cr>
+nmap <S-F3> :call ToggleShowProjectPanel()<cr>
 "
-" Read a skeleton for the file
-nmap <F4> :call ReadSkeleton()<cr>
+" 
+nmap <F4> :call SaveProject()<cr>
+nmap <S-F4> :call SaveAsProject("")<cr>
 
 " Open scratch buffer in new tab
 nmap <F6> :tabnew<cr>:set buftype=nofile<cr>
@@ -143,8 +145,6 @@ map <F12> :e ~/.vimrc<cr>
 
 " This is where my sessions will be saved.
 let Session_path = "/data/sessions"
-" The closet for skeletons
-let Skeleton_path = "/home/roetsm/.vim/skeletons"
 
 " Pretty nifty. Yanks to the clipboard, pastes from the clipboard
 nnoremap <leader>yf maggVG"+y`azz
