@@ -113,31 +113,35 @@ nnoremap <silent> <C-space> :exe 'silent! normal! zA'.(foldlevel('.')?'':'l')<cr
 let mapleader = ";"
 " Some useful functions
 
+nmap <S-F1> :help myhelp<cr>
 " NERDTree
 nmap <F2> :NERDTreeToggle<cr>
 nmap <S-F2> :NERDTreeFind<cr>
+" Tag bar
 nmap <F3> :TagbarToggle<cr>
-nmap <S-F3> :call ToggleShowProjectPanel()<cr>
-"
-" 
+" Saving a project/session 
 nmap <F4> :call SaveProject()<cr>
 nmap <S-F4> :call SaveAsProject("")<cr>
-
-" Open scratch buffer in new tab
-nmap <F6> :tabnew<cr>:set buftype=nofile<cr>
-" Open scratch buffer in new split
-nmap <S-F6> :new<cr>:set buftype=nofile<cr>
-
+" Project/Session panel
+nmap <F5> :call ToggleShowProjectPanel()<cr>
+nmap <S-F5> :call ShowProjectPanel()<cr>:call RefreshProjectPanelContent("projectlist")<cr>
+" Scratch buffer
+" New tab
+nmap <S-F6> :tabnew<cr>:set buftype=nofile<cr>
+" New horizontal split
+nmap <F6> :new<cr>:set buftype=nofile<cr>
 " Execute macro in buffer q
 map <F7> @q
 " Modify macro in buffer q
 nmap <S-F7> :let @q="<C-r><C-r>q"
-
 " Clear highlights
 map <F8> :nohl<cr>
 " If Syntax synchronisation gets confused.
 map <S-F8> :syn sync fromstart<cr>
-
+" Building and running
+nmap <F9> :call Make()<cr>
+nmap <S-F9> :call RunProgram()<cr>
+" Generating tags
 noremap <F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+qf .<cr>
 inoremap <F11> <Esc>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+qf .<cr>
 " Edit the .vimrc file and .vim directory in a new tab
