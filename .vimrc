@@ -88,6 +88,7 @@ syntax enable
 set backspace=indent,eol,start
 set showmatch
 set cursorline
+set completeopt=menuone
 highlight Cursorline cterm=NONE
 highlight Cursorline ctermbg=7
 set nrformats-=octal
