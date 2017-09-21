@@ -2,23 +2,21 @@
 
 1. Function Keys
 
+<S-F1> 	Open this file
 <F2> 	Toggle NERDTree
 <S-F2> 	Show Current file in NERDTree
 <F3> 	Toggle Tag Bar
-<S-F3> 	Toggle the project Bar
 <F4> 	Save the current project
 <S-F4>  SaveAs the current poject
-Open scratch buffer in new tab
-nmap <F6> :tabnew<cr>:set buftype=nofile<cr>
-Open scratch buffer in new split
-nmap <S-F6> :new<cr>:set buftype=nofile<cr>
+<F5> 	Toggle Show Project Panel
+<S-F5> 	Show and refresh project panel
+<F6> 	New scratch buffer in split
+<S-F6> 	New scratch buffer in tab
 <F7> 	Execute macro in buffer q
 <S-F7> 	Modify macro in buffer q
 <F8> 	Clear highlights
 <S-F8> 	If Syntax synchronisation gets confused.
-
-noremap <F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+qf .<cr>
-inoremap <F11> <Esc>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+qf .<cr>
+<F11> 	Create tags
 <F12> 	Edit .vimrc file
 
 
