@@ -25,10 +25,10 @@ Plugin 'bling/vim-airline'
 Plugin 'majutsushi/tagbar'
 Plugin 'reedes/vim-pencil'
 Plugin 'shawncplus/phpcomplete.vim'
-Plugin 'ervandew/supertab'
+"Plugin 'ervandew/supertab'
 Plugin 'SirVer/ultisnips'
-"Plugin 'valloric/youcompleteme'
-Plugin 'sessionman.vim'
+Plugin 'valloric/youcompleteme'
+"Plugin 'sessionman.vim'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 " The following are examples of different formats supported.
@@ -91,13 +91,14 @@ set cursorline
 set completeopt=menuone
 set nrformats-=octal
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
-colorscheme solarized
 if has('gui_running')
     set background=dark
     set lines=35 columns=150
 else
-    set background=light
+    " Here we can set some options if we are not using the gui
+    set background=dark
 endif
+colorscheme solarized
 
 " Working with splits
 set wmh=0                 " Minimum window height.
