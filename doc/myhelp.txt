@@ -15,7 +15,8 @@
 <F7> 	Execute macro in buffer q
 <S-F7> 	Modify macro in buffer q
 <F8> 	Clear highlights
-<S-F8> 	If Syntax synchronisation gets confused.
+<S-F8> 	Show/Hide hidden characters
+<C-F8> 	If Syntax synchronisation gets confused.
 <F11> 	Create tags
 <F12> 	Edit .vimrc file
 

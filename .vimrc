@@ -90,6 +90,7 @@ set showmatch
 set cursorline
 set completeopt=menuone
 set nrformats-=octal
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 colorscheme solarized
 if has('gui_running')
     set background=dark
@@ -136,7 +137,9 @@ nmap <S-F7> :let @q="<C-r><C-r>q"
 " Clear highlights
 map <F8> :nohl<cr>
 " If Syntax synchronisation gets confused.
-map <S-F8> :syn sync fromstart<cr>
+map <C-F8> :syn sync fromstart<cr>
+" Show hidden chararcters and trailing whitespace
+map <S-F8> :set invlist<cr>
 " Building and running
 nmap <F9> :call Make()<cr>
 nmap <S-F9> :call RunProgram()<cr>
@@ -155,6 +158,8 @@ nnoremap <leader>yy "+yy
 vnoremap <leader>y "+y
 nnoremap <leader>p :set paste<cr>"+p:set nopaste<cr>
 
+nmap ;gs :Gstatus<cr>
+nmap ;gd :Gvdiff<cr>
 " Move to the next buffer
 nmap <Tab> :bnext<cr>
 " Move to the previous buffer
@@ -183,7 +188,7 @@ nmap <leader>bm :CtrlPMixed<cr>
 nmap <leader>bs :CtrlPMRU<cr>
 
 
-nmap <leader>fu :grep! <cword><cr>
+nmap <leader>fu :grep! -riw <cword> .<cr>
 nmap <leader>w W
 let g:SuperTabDefaultCompletionType = "context"
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
