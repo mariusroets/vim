@@ -1,5 +1,32 @@
 #!/bin/bash
 
-ln -s ~/.vim/.vimrc ~/.vimrc
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vimrc_file=~/.vimrc
+vc_vimrc_file=~/.vim/.vimrc
+vim_backup=~/.vimbackup
+vundle_file=~/.vim/bundle/Vundle.vim
+vundle_url=https://github.com/VundleVim/Vundle.vim.git
+ftdetect=~/.vim/ftdetect
+ultisnips_ftdetect=~/.vim/bundle/ultisnips/ftdetect/*
+
+if [ -f $vimrc_file ]; then
+    echo Removing old .vimrc ...
+    rm $vimrc_file
+fi
+echo Linking .vimrc ...
+ln -s $vc_vimrc_file $vimrc_file
+if [ ! -d $vim_backup ]; then
+    echo Creating $vim_backup directory ...
+    mkdir $vim_backup
+fi
+if [ ! -d $vundle_file ]; then
+    echo Attempting to clone Vundle
+    git clone $vundle_url $vundle_file
+fi
+echo Installing plugins ...
 vim +PluginInstall +qall
+
+echo Setting up ftdetect for ultisnips
+if [ ! -d $ftdetect ]; then
+    mkdir $ftdetect
+    ln -s $ultisnips_ftdetect $ftdetect
+fi
