@@ -85,7 +85,7 @@ nnoremap <silent> <C-space> :exe 'silent! normal! zA'.(foldlevel('.')?'':'l')<cr
 let mapleader = ";"
 " Some useful functions
 
-nmap <S-F1> :help myhelp<cr>
+nnoremap <S-F1> :vert bo help myhelp<cr>
 " NERDTree
 nmap <F2> :NERDTreeToggle<cr>
 nmap <S-F2> :NERDTreeFind<cr>
@@ -122,8 +122,7 @@ inoremap <F11> <Esc>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+qf .<cr>
 " Edit the .vimrc file and .vim directory in a new tab
 map <F12> :e ~/.vimrc<cr>
 
-" This is where my sessions will be saved.
-let Session_path = "/data/sessions"
+nnoremap help vert bo help
 
 " Pretty nifty. Yanks to the clipboard, pastes from the clipboard
 nnoremap <leader>yf maggVG"+y`azz
@@ -142,6 +141,8 @@ nmap <C-X> :bdelete<cr>
 nmap <leader>fu :grep! -riw <cword> .<cr>
 nmap <leader>w W
 
+" This is where my sessions will be saved.
+let Session_path = "/data/sessions"
 "########### Fugitive ##############
 nmap <leader>gs :Gstatus<cr>
 nmap <leader>gd :Gvdiff<cr>
