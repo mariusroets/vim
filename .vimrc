@@ -1,58 +1,30 @@
 set nocompatible
 
 "##############################################
-"##### Settings for Vundle ####################
+"##### Settings for vim-plug ####################
 "##############################################
-filetype off
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-commentary'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'bling/vim-airline'
-Plugin 'majutsushi/tagbar'
-Plugin 'reedes/vim-pencil'
-Plugin 'shawncplus/phpcomplete.vim'
-"Plugin 'ervandew/supertab'
-Plugin 'SirVer/ultisnips'
-Plugin 'valloric/youcompleteme'
-"Plugin 'sessionman.vim'
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#begin('~/.vim/plugged')
+Plug 'altercation/vim-colors-solarized'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'bling/vim-airline'
+Plug 'majutsushi/tagbar'
+Plug 'reedes/vim-pencil'
+Plug 'shawncplus/phpcomplete.vim'
+"Plug 'ervandew/supertab'
+Plug 'SirVer/ultisnips'
+Plug 'valloric/youcompleteme'
+"Plug 'sessionman.vim'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+call plug#end()
 "##############################################
-"#### END : Settings for Vundle ###############
+"#### END : Settings for vim-plug ###############
 "##############################################
 
 "##############################################
@@ -84,7 +56,6 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set number
-syntax enable
 set backspace=indent,eol,start
 set showmatch
 set cursorline
@@ -99,14 +70,14 @@ else
     set background=dark
 endif
 colorscheme solarized
-
-" Working with splits
 set wmh=0                 " Minimum window height.
 set wmw=0
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
-nmap <c-h> gT
-nmap <c-l> gt
+
+" Working with splits
+nmap <C-J> <C-W>j
+nmap <C-K> <C-W>k
+nmap <C-H> <C-W>h
+nmap <C-L> <C-W>l
 " Use space to open and close folds
 nnoremap <silent> <space> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<cr>
 nnoremap <silent> <C-space> :exe 'silent! normal! zA'.(foldlevel('.')?'':'l')<cr>
@@ -120,6 +91,7 @@ nmap <F2> :NERDTreeToggle<cr>
 nmap <S-F2> :NERDTreeFind<cr>
 " Tag bar
 nmap <F3> :TagbarToggle<cr>
+nmap <S-F3> :UltiSnipsEdit<cr>
 " Saving a project/session 
 nmap <F4> :call SaveProject()<cr>
 nmap <S-F4> :call SaveAsProject("")<cr>
@@ -159,8 +131,6 @@ nnoremap <leader>yy "+yy
 vnoremap <leader>y "+y
 nnoremap <leader>p :set paste<cr>"+p:set nopaste<cr>
 
-nmap ;gs :Gstatus<cr>
-nmap ;gd :Gvdiff<cr>
 " Move to the next buffer
 nmap <Tab> :bnext<cr>
 " Move to the previous buffer
@@ -169,45 +139,28 @@ nmap <S-Tab> :ls<cr>:b
 nmap <C-Tab> <C-^>
 " Deletes the current buffer
 nmap <C-X> :bdelete<cr>
+nmap <leader>fu :grep! -riw <cword> .<cr>
+nmap <leader>w W
 
-" Mapping for CtrlP
+"########### Fugitive ##############
+nmap <leader>gs :Gstatus<cr>
+nmap <leader>gd :Gvdiff<cr>
+"########### CtrlP ##############
 " " Setup some default ignores
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
   \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
 \}
-
-" Use the nearest .git directory as the cwd
-" This makes a lot of sense if you are working on a project that is in version
-" control. It also supports works with .svn, .hg, .bzr.
 let g:ctrlp_working_path_mode = 'r'
 
-" Easy bindings for its various modes
-nmap <leader>b :CtrlP<cr>
-nmap <leader>bb :CtrlPBuffer<cr>
-nmap <leader>bm :CtrlPMixed<cr>
-nmap <leader>bs :CtrlPMRU<cr>
-
-
-nmap <leader>fu :grep! -riw <cword> .<cr>
-nmap <leader>w W
-let g:SuperTabDefaultCompletionType = "context"
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+"########### UltiSnips ##############
 let g:UltiSnipsExpandTrigger="<C-tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsListSnippets="<S-tab>"
 let g:UltiSnipsEditSplit="vertical"
 
-"nmap <C-O> <C-W>gf
-"let g:tex_flavor = 'latex'
-"cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
-
+"########### Airline ##############
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
-"let g:airline_powerline_fonts = 1
-"let g:airline_theme='powerlineish'
-"let g:airline#extensions#syntastic#enabled = 1
-"set laststatus=2
+let g:airline#extensions#tabline#buffer_nr_show = 1
+

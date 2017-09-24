@@ -1,11 +1,12 @@
 *myhelp.txt*	For Vim version 7.3	Last change: 2017 September 21
 
-1. Function Keys
+1. Function Keys					*function-keys*
 
 <S-F1> 	Open this file
 <F2> 	Toggle NERDTree
 <S-F2> 	Show Current file in NERDTree
 <F3> 	Toggle Tag Bar
+<S-F3> 	UltiSnipsEdit
 <F4> 	Save the current project
 <S-F4>  SaveAs the current poject
 <F5> 	Toggle Show Project Panel
@@ -19,6 +20,30 @@
 <C-F8> 	If Syntax synchronisation gets confused.
 <F11> 	Create tags
 <F12> 	Edit .vimrc file
+
+2. Mappings						*mappings*
+
+2.1 Buffers
+<Tab>		(n)	Next Buffer
+<S-Tab>		(n)	Buffer list with option to jump to buffer
+<C-Tab>		(n)	Alternate buffer
+<C-X>		(n)	Delete buffer
+2.2 Clipboard yanking
+<leader>yf	(n)	Yank file to clipboard
+<leader>yy	(n)	Yank line to clipboard
+<leader>y	(v)	Yank selection to clipboard
+<leader>p	(n)	Paste clipboard
+2.3 Git
+<leader>gs	(n)	Fugitive Git status
+<leader>gd	(n)	Fugitive vertical Git diff
+2.4 Windows
+<C-J>		(n)	Down a window
+<C-K>		(n)	Up a window
+<C-H>		(n)	Left a window
+<C-L>		(n)	Right a window
+2.5 General
+<leader>fu	(n)	Find uses for <word> under cursor
+<leader>w	(n)	Next Window
 
 
  vim:tw=78:ts=8:ft=help:norl:noexpandtab
