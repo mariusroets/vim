@@ -64,7 +64,7 @@ set nrformats-=octal
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 if has('gui_running')
     set background=dark
-    set lines=35 columns=150
+    "set lines=35 columns=150
 else
     " Here we can set some options if we are not using the gui
     set background=dark
@@ -72,6 +72,11 @@ endif
 colorscheme solarized
 set wmh=0                 " Minimum window height.
 set wmw=0
+
+"Remap <esc>
+inoremap jk <esc>
+inoremap <esc> <nop>
+
 
 " Working with splits
 nmap <C-J> <C-W>j
@@ -121,8 +126,9 @@ noremap <F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+qf .<cr>
 inoremap <F11> <Esc>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+qf .<cr>
 " Edit the .vimrc file and .vim directory in a new tab
 map <F12> :e ~/.vimrc<cr>
+map <S-F12> :source ~/.vimrc<cr>
 
-nnoremap help vert bo help
+cnoremap help vert bo help 
 
 " Pretty nifty. Yanks to the clipboard, pastes from the clipboard
 nnoremap <leader>yf maggVG"+y`azz
