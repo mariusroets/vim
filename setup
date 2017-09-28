@@ -3,8 +3,8 @@
 vimrc_file=~/.vimrc
 vc_vimrc_file=~/.vim/.vimrc
 vim_backup=~/.vimbackup
-vundle_file=~/.vim/bundle/Vundle.vim
-vundle_url=https://github.com/VundleVim/Vundle.vim.git
+#vundle_file=~/.vim/bundle/Vundle.vim
+#vundle_url=https://github.com/VundleVim/Vundle.vim.git
 ftdetect=~/.vim/ftdetect
 ultisnips_ftdetect=~/.vim/bundle/ultisnips/ftdetect/*
 
@@ -18,12 +18,12 @@ if [ ! -d $vim_backup ]; then
     echo Creating $vim_backup directory ...
     mkdir $vim_backup
 fi
-if [ ! -d $vundle_file ]; then
-    echo Attempting to clone Vundle
-    git clone $vundle_url $vundle_file
-fi
+#if [ ! -d $vundle_file ]; then
+#    echo Attempting to clone Vundle
+#    git clone $vundle_url $vundle_file
+#fi
 echo Installing plugins ...
-vim +PluginInstall +qall
+vim +PlugInstall +qall
 
 echo Setting up ftdetect for ultisnips
 if [ ! -d $ftdetect ]; then
