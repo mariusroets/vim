@@ -33,15 +33,13 @@
 " Project Settings
 " g:DateModified
 " g:DateCreated
-" g:ProjectDirectory
 " g:Session_path 
 " g:ProjectPanelWidth
 " System
 " g:colors_name
-let g:ProjectDirectory = ""
 let g:ProjectPanelOpen = 0
 let g:ProjectPanelWidth = 30
-let g:CurrentPanelContent = "projectdetails"
+let g:CurrentPanelContent = "projectlist"
 let g:DateCreated = "Not Implemented yet"
 let g:DateModified = "Not Implemented yet"
 " }}}
@@ -49,7 +47,7 @@ let g:DateModified = "Not Implemented yet"
 let s:RunBufferName = '--Program Output--'
 let s:MakeBufferName = '--Make Output--'
 let s:ProjectPanelName = '--Project--'
-let s:PanelContents = ["projectlist","projectdetails","explorer"]
+let s:PanelContents = ["projectlist","projectdetails"]
 let s:SettingNames = ["ProjectDirectory","ProjectName"]
 let s:SettingValues = {"ProjectDirectory" : "",
          \"ProjectName" : ""}
@@ -59,15 +57,15 @@ let s:MaxTabPageNameLength = 35
 " }}}
 " Loading and Saving
 " {{{ function! SaveProject()
-function! SaveProject()
+function! SaveProject(do_save_as)
 
    " Save the session, if the user so wishes
    if exists("v:this_session")
-      " echo "Session exists"
       if (v:this_session == "")
-         " echo "but it's empty"
          " Ask the user if he wants to save this session
-         call SaveAsProject("")
+         if (a:do_save_as == 1)
+             call SaveAsProject("")
+         endif
       else
          " Write all buffers
          call SaveAsProject(v:this_session)
@@ -92,6 +90,7 @@ function! SaveAsProject(projectName)
    " adding it twice)
    let projectName = substitute(projectName,'\.vim$',"","")
    let s:SettingValues['ProjectName'] = projectName
+   let s:SettingValues['ProjectDirectory'] = getcwd()
    let projectName = projectName . ".vim"
    if exists ("g:Session_path")
       let session_path = g:Session_path 
@@ -103,8 +102,7 @@ function! SaveAsProject(projectName)
    wall 
    execute "mksession! " . session_path . "/" . projectName
 
-   echo "Session ".v:this_session." saved successfully"
-   call SaveSettings()
+   echom "Session ".v:this_session." saved successfully"
    call SetTitleBarToSessionName()
 
 
@@ -117,40 +115,12 @@ function! LoadProject(projectPath)
       silent! bufdo! bwipeout!
       " Load the session
       execute "source " . a:projectPath
+      let title = StripSessionPath()
+      let s:SettingValues["ProjectName"] = title 
+      let s:SettingValues["ProjectDirectory"] = getcwd()
+
    endif
    call SetTitleBarToSessionName()
-   call LoadSettings()
-endfunction
-"}}}
-"{{{ function! SaveSettings()
-function! SaveSettings()
-"let s:SettingNames = ["ProjectDirectory","ProjectName"]
-   let settingsLines = []
-   for n in s:SettingNames
-      call add(settingsLines, n . "=" . s:SettingValues[n])
-   endfor
-   let filename = v:this_session
-   let filename = substitute(filename,'\.vim$',"","")
-   let filename = filename . ".prj"
-   call writefile(settingsLines,filename)
-
-endfunction
-"}}}
-"{{{ function! LoadSettings()
-function! LoadSettings()
-   let filename = v:this_session
-   let filename = substitute(filename,'\.vim$',"","")
-   let filename = filename . ".prj"
-   if (!filereadable(filename))
-      return ""
-   endif
-
-   let settingsLines = readfile(filename)
-   for n in settingsLines
-      let items = split(n, '=')
-      let s:SettingValues[items[0]] = items[1]
-   endfor
-   
 endfunction
 "}}}
 " Making and Running
@@ -286,41 +256,7 @@ function! StripSessionPath()
    return title
 endfunction
 "}}}
-" {{{ function! GetTabPageNumberForBuffer(bufferName)
-function! GetTabPageNumberForBuffer(bufferName)
-   redir => tabpages
-   silent! tabs
-   redir END
-   let tabpagelines = split(tabpages,'\n')
-   for line in tabpagelines
-      if ( match(line,'Tab page') != -1)
-         let list = matchlist(line,'Tab page \(\d\+\)')
-         let currentTabPage = list[1]
-      endif
-      if (match(line,a:bufferName) != -1)
-         "echo currentTabPage
-         return currentTabPage
-      endif
-   endfor
-   " Buffer not found return 0
-   return 0
-
-endfunction
-" }}}
 " Project Files and Settings
-"{{{ function! GetProjectDirectory()
-function! GetProjectDirectory()
-   let pdir = getcwd()
-   "if has('browse')
-   "   let pdir = browsedir("Project",pdir)
-   "else
-   let pdir = input("Give Project home directory: ",pdir,"dir")
-   " endif
-   if (pdir != "")
-      let g:ProjectDirectory = pdir
-   endif
-endfunction
-"}}}
 " {{{ function! GetProjectFullPathFromProjectPanel()
 function! GetProjectFullPathFromProjectPanel()
    let line = getline(".")
@@ -344,7 +280,6 @@ function! CreateDestroyProjectPanel()
          execute "bwipeout ".g:ProjectBufferToWipe
          unlet g:ProjectBufferToWipe
       endif
-      "echo "Deleting buffer ".bufnr
       execute "bwipeout ".bufnr
    endif
 
@@ -402,6 +337,7 @@ function! SetPanelBufferOptions()
    setlocal nomodifiable
    setlocal noruler
    setlocal noswapfile
+   setlocal nonumber
    if !bufexists(s:ProjectPanelName)
       execute "silent file " . escape(s:ProjectPanelName," ")
    endif
@@ -454,8 +390,6 @@ function! RefreshProjectPanelContent(...)
       call CreateProjectList()
    elseif g:CurrentPanelContent == "projectdetails"
       call CreateProjectDetails()
-   elseif g:CurrentPanelContent == "explorer"
-      call CreateExplorer()
    endif
    " Because something might have changed them
    call SetPanelBufferOptions()
@@ -512,9 +446,9 @@ function! DeleteChosenProject()
    let fullPath = GetProjectFullPathFromProjectPanel()
    let nr = delete(fullPath)
    if nr == 0
-      echo "Deleted project ".fullPath
+      echom "Deleted project ".fullPath
    else
-      echo "Could not delete project ".fullPath
+      echom "Could not delete project ".fullPath
    endif
    call RefreshProjectPanelContent()
 
@@ -538,7 +472,7 @@ function! CreateProjectDetails()
    if v:this_session != ""
       let name = StripSessionPath()
       let fileCount = 0
-      execute "normal i*Project Details\<cr>"
+      execute "normal i==Project Details==\<cr>"
       execute "normal i(Enter to change value)\<cr>\<cr>"
       for setting in s:SettingNames
          execute "normal i*".s:SettingDescriptions[setting].":\<cr>"
@@ -565,68 +499,18 @@ function! ChangeSetting()
    return ""
 endfunction
 " }}}
-" Explorer
-" {{{ function! CreateExplorer()
-function! CreateExplorer()
-   Explore
-   let g:ProjectBufferToWipe = bufnr("%")
-endfunction
-" }}}
 " Project files
 
-" Setting the tab label
-" {{{function GuiTabLabel()
-function GuiTabLabel()
-   if exists("t:TabPageName")
-      return t:TabPageName
-   endif
-   let label = ''
-   let bufnrlist = tabpagebuflist(v:lnum)
-
-   " Add '+' if one of the buffers in the tab page is modified
-   for bufnr in bufnrlist
-      if getbufvar(bufnr, "&modified")
-         let label = '+'
-         break
-      endif
-   endfor
-
-   " Append the tab page number
-   let label .= v:lnum . ' '
-
-   " Append the buffer name
-   let index = tabpagewinnr(v:lnum) - 1 
-   if bufname(bufnrlist[index]) == s:ProjectPanelName
-      let index = index + 1
-      if index >= len(bufnrlist)
-         let index = 0
-      endif
-   endif
-   " Now we have the buffer name. If it's too long, make it shorter
-   let longbufname = bufname(bufnrlist[index])
-   if strlen(longbufname) > s:MaxTabPageNameLength
-      let longbufname = '...'.strpart(longbufname,strlen(longbufname)-s:MaxTabPageNameLength-3)
-   endif
-   return label . longbufname
-endfunction
-
-set guitablabel=%{GuiTabLabel()}
-"}}}
-
 " {{{ Mappings
-autocmd TabEnter,SessionLoadPost *  call RefreshProjectPanelContent()
+augroup runutil
+    autocmd!
+    autocmd TabEnter,SessionLoadPost *  call RefreshProjectPanelContent()
+    autocmd BufWrite * call SaveProject(0)
+augroup END
+
 nmap <leader>jr :call JumpToRunPage()<cr>
 nmap <leader>jm :call JumpToMakePage()<cr>
 nmap <leader>jb :call JumpBack()<cr>
 
-nmap <leader>1 :tabnext 1<cr>
-nmap <leader>2 :tabnext 2<cr>
-nmap <leader>3 :tabnext 3<cr>
-nmap <leader>4 :tabnext 4<cr>
-nmap <leader>5 :tabnext 5<cr>
-nmap <leader>6 :tabnext 6<cr>
-nmap <leader>7 :tabnext 7<cr>
-nmap <leader>8 :tabnext 8<cr>
-nmap <leader>9 :tabnext 9<cr>
 " }}}
 
