@@ -149,7 +149,7 @@ nmap <leader>fu :Ack! <cword><cr>
 nmap <leader>w W
 
 " This is where my sessions will be saved.
-let Session_path = "/data/sessions"
+let Session_path = "/data/Dropbox/sessions"
 "########### Fugitive ##############
 nmap <leader>gs :Gstatus<cr>
 nmap <leader>gd :Gvdiff<cr>
