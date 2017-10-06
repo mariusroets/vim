@@ -22,6 +22,7 @@ Plug 'valloric/youcompleteme'
 "Plug 'sessionman.vim'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'mileszs/ack.vim'
 call plug#end()
 "##############################################
 "#### END : Settings for vim-plug ###############
@@ -47,8 +48,8 @@ set backupdir=~/.vimbackup,.
 set directory=~/.vimbackup,.
 set ignorecase
 set smartcase
-set sessionoptions=blank,buffers,curdir,help,options,tabpages,winsize
-set switchbuf=useopen,usetab,split
+set sessionoptions=blank,buffers,curdir,help,winsize,winpos,resize
+set switchbuf=useopen,usetab
 set hidden
 " Disable system bell
 set visualbell t_vb=
@@ -64,7 +65,7 @@ set nrformats-=octal
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 if has('gui_running')
     set background=dark
-    "set lines=35 columns=150
+    set lines=35 columns=150
 else
     " Here we can set some options if we are not using the gui
     set background=dark
@@ -98,11 +99,11 @@ nmap <S-F2> :NERDTreeFind<cr>
 nmap <F3> :TagbarToggle<cr>
 nmap <S-F3> :UltiSnipsEdit<cr>
 " Saving a project/session 
-nmap <F4> :call SaveProject()<cr>
+nmap <F4> :call SaveProject(1)<cr>
 nmap <S-F4> :call SaveAsProject("")<cr>
 " Project/Session panel
 nmap <F5> :call ToggleShowProjectPanel()<cr>
-nmap <S-F5> :call ShowProjectPanel()<cr>:call RefreshProjectPanelContent("projectlist")<cr>
+nmap <S-F5> :call NextProjectPanelContent()<cr>
 " Scratch buffer
 " New tab
 nmap <S-F6> :tabnew<cr>:set buftype=nofile<cr>
@@ -128,7 +129,7 @@ inoremap <F11> <Esc>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+qf .<cr>
 map <F12> :e ~/.vimrc<cr>
 map <S-F12> :source ~/.vimrc<cr>
 
-cnoremap help vert bo help 
+cnoreabbrev help vert bo help 
 
 " Pretty nifty. Yanks to the clipboard, pastes from the clipboard
 nnoremap <leader>yf maggVG"+y`azz
@@ -144,7 +145,7 @@ nmap <S-Tab> :ls<cr>:b
 nmap <C-Tab> <C-^>
 " Deletes the current buffer
 nmap <C-X> :bdelete<cr>
-nmap <leader>fu :grep! -riw <cword> .<cr>
+nmap <leader>fu :Ack! <cword><cr>
 nmap <leader>w W
 
 " This is where my sessions will be saved.
@@ -170,4 +171,8 @@ let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_nr_show = 1
+
+"########### Ack ##############
+let g:ackprg = 'ag --vimgrep --smart-case'
+cnoreabbrev ag Ack!
 
