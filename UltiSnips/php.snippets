@@ -1,7 +1,26 @@
 snippet action
-public function $1Action()
+/**
+ * $1
+ */
+public function $2Action()
 {
 	$0
+}
+endsnippet
+snippet class
+<?php
+
+/**
+ * $1
+ *
+ * @ingroup $2
+ */
+class $3
+{
+	public function __construct()
+	{
+		$0
+	}
 }
 endsnippet
 snippet controller
@@ -55,6 +74,7 @@ class Application_Form_$2 extends Gen_Form_Custom_$3
 	{
 		$5
 	}
+}
 endsnippet
 snippet publicfu
 /**
