@@ -22,7 +22,7 @@ Plug 'valloric/youcompleteme'
 "Plug 'sessionman.vim'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'mileszs/ack.vim'
+Plug 'mhinz/vim-grepper'
 call plug#end()
 "##############################################
 "#### END : Settings for vim-plug ###############
@@ -145,7 +145,8 @@ nmap <S-Tab> :ls<cr>:b
 nmap <C-Tab> <C-^>
 " Deletes the current buffer
 nmap <C-X> :bdelete<cr>
-nmap <leader>fu :Ack! <cword><cr>
+nmap <leader>fu :Grepper -tool git -noprompt -cword<cr>
+nmap <leader>gg :Grepper -tool git<cr>
 nmap <leader>w W
 
 " This is where my sessions will be saved.
@@ -172,7 +173,4 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
-"########### Ack ##############
-let g:ackprg = 'ag --vimgrep --smart-case'
-cnoreabbrev ag Ack!
 
