@@ -140,7 +140,9 @@ nnoremap <leader>p :set paste<cr>"+p:set nopaste<cr>
 " Move to the next buffer
 nmap <Tab> :bnext<cr>
 " Move to the previous buffer
-nmap <S-Tab> :ls<cr>:b
+nmap <S-Tab> :bprevious<cr>
+" List open buffers and give switching option
+nmap <C-Q> :CtrlPBuffer<cr>
 " Move to the alternate buffer
 nmap <C-Tab> <C-^>
 " Deletes the current buffer

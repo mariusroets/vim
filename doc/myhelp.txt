@@ -25,8 +25,9 @@
 
 2.1 Buffers
 <Tab>		(n)	Next Buffer
-<S-Tab>		(n)	Buffer list with option to jump to buffer
+<S-Tab>		(n)	Previous Buffer
 <C-Tab>		(n)	Alternate buffer
+<C-Q>		(n)	Buffer list with option to jump to buffer
 <C-X>		(n)	Delete buffer
 2.2 Clipboard yanking
 <leader>yf	(n)	Yank file to clipboard
