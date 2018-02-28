@@ -25,4 +25,5 @@ source ~/.vim/after/ftplugin/tmux-send.vim
 
 "Mappings
 nmap <C-F9> :call ReloadModule()<cr><cr>
+"nnoremap <F9> :w<cr>:call UpdateDevelopment()<cr>:call SendFile()<cr><cr>
 nnoremap <F9> :w<cr>:call SendFile()<cr><cr>
