@@ -20,9 +20,9 @@ endfunction
 " Sending file content to screen session
 let b:screen_send_screen_name = "python"
 let filename = expand("%:t")
-let b:screen_execute_cmd = "execfile(\"".filename."\")"
-source ~/.vim/after/ftplugin/screen-send.vim
+let b:screen_execute_cmd = '\%run '.filename
+source ~/.vim/after/ftplugin/tmux-send.vim
 
 "Mappings
 nmap <C-F9> :call ReloadModule()<cr><cr>
-nnoremap <F9> :w<cr>:call UpdateDevelopment()<cr>:call SendFile()<cr><cr>
+nnoremap <F9> :w<cr>:call SendFile()<cr><cr>
