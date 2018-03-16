@@ -23,6 +23,7 @@ Plug 'valloric/youcompleteme'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'mhinz/vim-grepper'
+Plug 'lervag/vimtex'
 call plug#end()
 "##############################################
 "#### END : Settings for vim-plug ###############
@@ -175,4 +176,4 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
-
+let g:tex_flavor = 'latex'
