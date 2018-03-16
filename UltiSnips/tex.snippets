@@ -1,0 +1,20 @@
+snippet doc "Start a new document"
+\documentclass[${1:11pt,a4paper,titlepage}]{${2:article}}
+\usepackage[margin=30mm]{geometry}
+\usepackage[pdftex]{color,graphicx}
+$0
+\begin{document}
+
+\end{document}
+endsnippet
+snippet graphics "Some preamble setup for easier working with graphics"
+\graphicspath{{${1:relative path}}}
+\DeclareGraphicsExtensions{${2:.pdf,.png}}$0
+endsnippet
+snippet pic "Insert a graphic object or picture"
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{${1:path relative to graphicspath if defined}}
+	\caption{$2}\label{$3}
+\end{figure}$0
+endsnippet
