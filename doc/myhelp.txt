@@ -37,12 +37,21 @@
 2.3 Git
 <leader>gs	(n)	Fugitive Git status
 <leader>gd	(n)	Fugitive vertical Git diff
+<leader>gg	(n)	Do a git grep
 2.4 Windows
 <C-J>		(n)	Down a window
 <C-K>		(n)	Up a window
 <C-H>		(n)	Left a window
 <C-L>		(n)	Right a window
-2.5 General
+2.5 Comments and surround
+cs'"            (n)     Change surround from ' to "
+ds"             (n)     Remove surrounding "
+yss"            (n)     Surround entire line with "
+S"              (v)     Surround visually select area with "
+gcc             (n)     Comment out current line
+gc<motion>      (n)     Comment out to motion
+gc              (v)     Comment out visual selection
+2.6 General
 <leader>fu	(n)	Find uses for <word> under cursor
 <leader>w	(n)	Next Window
 
