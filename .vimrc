@@ -176,4 +176,9 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
+"########### Pandoc ##############
+let g:pandoc#modules#disabled = ["chdir"]
+
+"########### Latex ##############
 let g:tex_flavor = 'latex'
+
