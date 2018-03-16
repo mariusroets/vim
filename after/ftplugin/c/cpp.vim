@@ -1,5 +1,4 @@
 " OmniCppComplete initialization
-call omni#cpp#complete#Init()
 setlocal tags+=~/.vim/tags/qt
 
 " OmniCppComplete
