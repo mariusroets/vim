@@ -145,4 +145,26 @@ snippet us
 'use strict'`!p snip.rv = semi(snip)`
 endsnippet
 
+snippet js
+/**
+ * $1
+ *
+ * @ingroup Javascript
+ */
+
+$(document).ready(function() {
+	$0
+});
+endsnippet
+snippet timer
+$(document).everyTime($1, function() {
+	$0
+});
+endsnippet
+snippet ajax
+$.post("$1", function(data) {
+	$0
+});
+endsnippet
+
 # vim:ft=snippets:

@@ -283,4 +283,101 @@ snip.rv = re.match(r'.*(?=\.)', fn).group()
 }
 endsnippet
 
+snippet oldclass
+<?php
+
+/**
+ * $1
+ *
+ * @ingroup $2
+ */
+class $3
+{
+	public function __construct()
+	{
+		$0
+	}
+}
+endsnippet
+snippet action
+/**
+ * $1
+ */
+public function $2Action()
+{
+	$0
+}
+endsnippet
+snippet controller
+<?php
+
+/**
+ * $1
+ *
+ * @ingroup Controllers
+ */
+class $2Controller extends Zend_Controller_Action
+{
+	public function init()
+	{
+		$3
+	}
+	public function indexAction()
+	{
+		$4
+	}
+}
+endsnippet
+snippet model
+<?php
+
+/**
+ * $1
+ *
+ * @ingroup Models
+ */
+class Application_Model_$2 extends Application_Model_Abstract
+{
+	$0
+}
+endsnippet
+snippet form
+<?php
+
+/**
+ * $1
+ *
+ * @ingroup Forms
+ */
+class Application_Form_$2 extends Gen_Form_Custom_$3
+{
+	public function init()
+	{
+		$4
+	}
+	public function createForm()
+	{
+		$5
+	}
+}
+endsnippet
+snippet unittest
+<?php
+
+/**
+ * $1
+ */
+class $2Test extends Esk_UnitTest$3
+{
+
+    public function setUp()
+    {
+        parent::setUp();
+    }
+    public function test$4() 
+    {
+		$0
+    }
+}
+endsnippet
 # :vim:ft=snippets:

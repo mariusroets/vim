@@ -220,4 +220,17 @@ ${2:${VISUAL:code}}
 
 $0
 endsnippet
+snippet graphics "Some preamble setup for easier working with graphics"
+\graphicspath{{${1:relative path}}}
+\DeclareGraphicsExtensions{${2:.pdf,.png}}$0
+endsnippet
+snippet doc "Start a new document"
+\documentclass[${1:11pt,a4paper,titlepage}]{${2:article}}
+\usepackage[margin=30mm]{geometry}
+\usepackage[pdftex]{color,graphicx}
+$0
+\begin{document}
+
+\end{document}
+endsnippet
 # vim:ft=snippets:
