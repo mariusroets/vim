@@ -1,5 +1,7 @@
 set nocompatible
 
+let mapleader = ";"
+let maplocalleader = ','
 "##############################################
 "##### Settings for vim-plug ####################
 "##############################################
@@ -24,6 +26,7 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'mhinz/vim-grepper'
 Plug 'lervag/vimtex'
+Plug 'jalvesaq/nvim-r'
 call plug#end()
 "##############################################
 "#### END : Settings for vim-plug ###############
@@ -89,7 +92,6 @@ nmap <C-L> <C-W>l
 nnoremap <silent> <space> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<cr>
 nnoremap <silent> <C-space> :exe 'silent! normal! zA'.(foldlevel('.')?'':'l')<cr>
 
-let mapleader = ";"
 " Some useful functions
 
 nnoremap <S-F1> :vert bo help myhelp<cr>
@@ -182,3 +184,5 @@ let g:pandoc#modules#disabled = ["chdir"]
 "########### Latex ##############
 let g:tex_flavor = 'latex'
 
+"########### NVim-R ##############
+"let R_in_buffer = 0
