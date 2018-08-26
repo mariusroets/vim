@@ -505,7 +505,7 @@ endfunction
 augroup runutil
     autocmd!
     autocmd TabEnter,SessionLoadPost *  call RefreshProjectPanelContent()
-    autocmd BufWrite * call SaveProject(0)
+    "autocmd BufWrite * call SaveProject(0)
 augroup END
 
 nmap <leader>jr :call JumpToRunPage()<cr>
