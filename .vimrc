@@ -183,6 +183,10 @@ let g:pandoc#modules#disabled = ["chdir"]
 
 "########### Latex ##############
 let g:tex_flavor = 'latex'
+"########### XML ##############
+let g:xml_syntax_folding = 1
 
 "########### NVim-R ##############
 "let R_in_buffer = 0
+"########### YCM ##############
+let g:ycm_key_list_previous_completion = ['<Up>']
