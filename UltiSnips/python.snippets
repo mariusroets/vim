@@ -710,5 +710,15 @@ snippet pmdoc "pocoo style module doc string" b
 """
 $0
 endsnippet
+snippet sqlamodel "A model class for a SqlAlchemy model"
+class ${1:Model}(Base):
+	"""${2:TODO: Document Model}"""
+	__tablename__ = "${3:tablename}"
+	__table_args__ = {'schema': '${4:schema_name}'}
+	$0
+
+	def __repr__(self):
+		return "${5:String representation}"
+endsnippet
 
 # vim:ft=snippets:
