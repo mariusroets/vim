@@ -1,0 +1,29 @@
+snippet form "Default form snippet"
+<form action="$1" method="${2:post}">
+	{% ${3:csrf_token} %}
+	{{ ${4:form} }}
+	<input type="${5:submit}" value="${6:Submit}">
+</form>
+$0
+endsnippet
+snippet block "A Django block, default 'content'"
+{% block ${1:content} %}
+$0
+{% endblock %}
+endsnippet
+snippet extend "Django include template"
+{% extends "${1:base.html}" %}$0
+endsnippet
+snippet load "Django load template module"
+{% load ${1:function} from ${2:module} %}$0
+endsnippet
+snippet ife "Django if with else"
+{% if ${1:variable} %}
+	$2
+{% else %}
+	$3
+{% endif %}$0
+endsnippet
+snippet dj "Generic(empty) django template command"
+{% $1 %}$0
+endsnippet
