@@ -27,6 +27,7 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'mhinz/vim-grepper'
 Plug 'lervag/vimtex'
 Plug 'jalvesaq/nvim-r'
+Plug 'vim-scripts/dbext.vim'
 call plug#end()
 "##############################################
 "#### END : Settings for vim-plug ###############
@@ -122,9 +123,8 @@ map <F8> :nohl<cr>
 map <C-F8> :syn sync fromstart<cr>
 " Show hidden chararcters and trailing whitespace
 map <S-F8> :set invlist<cr>
-" Building and running
-nmap <F9> :call Make()<cr>
-nmap <S-F9> :call RunProgram()<cr>
+" Allow buffer to be connected to a database
+nmap <F10> ;sbp
 " Generating tags
 noremap <F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+qf .<cr>
 inoremap <F11> <Esc>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+qf .<cr>
@@ -190,3 +190,8 @@ let g:xml_syntax_folding = 1
 "let R_in_buffer = 0
 "########### YCM ##############
 let g:ycm_key_list_previous_completion = ['<Up>']
+"########### dbext ##############
+let g:dbext_default_profile_pss_themis = 'type=ORA:user=pss:passwd=l3dz3pp3l1n:srvname=themis'
+let g:dbext_default_profile_powi_themis = 'type=ORA:user=powi:passwd=power:srvname=themis'
+let g:dbext_default_profile_roetsm_themis = 'type=ORA:user=roetsm:passwd=anduril1:srvname=themis'
+let g:dbext_default_profile_system_themis = 'type=ORA:user=system:passwd=themis:srvname=themis'
