@@ -1,0 +1,20 @@
+snippet procedure "Define a stored procedure"
+create or replace procedure ${1:schema}.${2:procedure_name} ${3:($4)}
+as$5 
+begin
+	${0:null;}
+end $2;
+/
+endsnippet
+snippet if "If without else"
+if $1 then
+	$0
+end if;
+endsnippet
+snippet ife "If with else"
+if $1 then
+	$2
+else
+	$0
+end if;
+endsnippet
