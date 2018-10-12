@@ -1,0 +1,8 @@
+snippet select "A select statement"
+select ${1:*}
+from ${2:table_name} ${3:alias}
+${4:where $0}
+endsnippet
+snippet date "A to_date function"
+to_date('$1','yyyy-mm-dd')$0
+endsnippet
