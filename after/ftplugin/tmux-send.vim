@@ -2,10 +2,12 @@
 let s:cmd = "!tmux send-keys -t default:".b:screen_send_screen_name." "
 
     "tmux send-keys -t $DEFAULT:root "anduril1" C-m
-function! SendFile()
-   let dir = expand("%:p:h")
-   let l = "cd \"".dir."\""
-   call SendLine(l)
+function! SendFile(...)
+    if a:0 == 0
+        let dir = expand("%:p:h")
+        let l = "cd \"".dir."\""
+        call SendLine(l)
+    end
    call SendLine(b:screen_execute_cmd)
 endfunction
 
