@@ -196,3 +196,4 @@ let g:dbext_default_profile_powi_themis = 'type=ORA:user=powi:passwd=power:srvna
 let g:dbext_default_profile_roetsm_themis = 'type=ORA:user=roetsm:passwd=anduril1:srvname=themis'
 let g:dbext_default_profile_system_themis = 'type=ORA:user=system:passwd=themis:srvname=themis'
 let g:dbext_default_profile_webmaster_phoenix = 'type=ORA:user=webmaster:passwd=web4px:srvname=phoenix'
+let g:dbext_default_profile_mdmsstaging_mdms = 'type=ORA:user=mdms_staging:passwd=zer45tgdinv:srvname=mdms'
