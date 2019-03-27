@@ -7,5 +7,5 @@ let b:screen_execute_cmd = '\%run '.filename
 source ~/.vim/after/ftplugin/tmux-send.vim
 
 "Mappings
-nmap <S-F9> :SyntasticCheck<cr>
+nmap <S-F9> :SyntasticCheck<cr>:Errors<cr>
 nnoremap <F9> :w<cr>:call SendFile(1)<cr><cr>
