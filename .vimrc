@@ -140,6 +140,10 @@ nnoremap <leader>yy "+yy
 vnoremap <leader>y "+y
 nnoremap <leader>p :set paste<cr>"+p:set nopaste<cr>
 
+" Maps to navigate errors
+nmap <C-Right> :lnext<cr>
+nmap <C-Left> :lprevious<cr>
+nmap <C-Down> :lclose<cr>
 " Move to the next buffer
 nmap <Tab> :bnext<cr>
 " Move to the previous buffer
