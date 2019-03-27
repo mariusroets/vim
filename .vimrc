@@ -20,7 +20,7 @@ Plug 'reedes/vim-pencil'
 Plug 'shawncplus/phpcomplete.vim'
 "Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
-Plug 'valloric/youcompleteme'
+"Plug 'valloric/youcompleteme'
 "Plug 'sessionman.vim'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -185,6 +185,11 @@ let g:pandoc#modules#disabled = ["chdir"]
 let g:tex_flavor = 'latex'
 "########### XML ##############
 let g:xml_syntax_folding = 1
+"########### Syntastic ##############
+let g:syntastic_mode_map = {
+    \ "mode": "active",
+    \ "active_filetypes": [],
+    \ "passive_filetypes": ["python"] }
 
 "########### NVim-R ##############
 "let R_in_buffer = 0
