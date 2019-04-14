@@ -28,3 +28,14 @@ endsnippet
 snippet dj "Generic(empty) django template command"
 {% $1 %}$0
 endsnippet
+snippet dc "Django single line comment"
+{# $1 #}$0
+endsnippet
+snippet dcc "Django multi line comment"
+{% comment "$1" %}
+	$2
+{% endcomment %}
+endsnippet
+snippet dvar "Django variable"
+{{ $1 }}$0
+endsnippet
