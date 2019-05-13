@@ -13,6 +13,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
+Plug 'albfan/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'bling/vim-airline'
 Plug 'majutsushi/tagbar'
@@ -120,7 +121,7 @@ nmap <S-F7> :let @q="<C-r><C-r>q"
 " Clear highlights
 map <F8> :nohl<cr>
 " If Syntax synchronisation gets confused.
-map <C-F8> :syn sync fromstart<cr>
+map <A-F8> :syn sync fromstart<cr>
 " Show hidden chararcters and trailing whitespace
 map <S-F8> :set invlist<cr>
 " Allow buffer to be connected to a database
