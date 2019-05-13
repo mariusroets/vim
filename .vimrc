@@ -196,6 +196,8 @@ let g:syntastic_mode_map = {
     \ "active_filetypes": [],
     \ "passive_filetypes": ["python"] }
 
+"########### NerdTree ##############
+let g:NERDTreeIgnore = ['^build$','^dist$','.egg-info$','^htmlcov$','^__pycache__$','.pyc$']
 "########### NVim-R ##############
 "let R_in_buffer = 0
 "########### YCM ##############
