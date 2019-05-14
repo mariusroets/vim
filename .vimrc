@@ -176,6 +176,7 @@ let g:ctrlp_working_path_mode = 'r'
 let g:UltiSnipsExpandTrigger="<C-tab>"
 let g:UltiSnipsListSnippets="<S-tab>"
 let g:UltiSnipsEditSplit="vertical"
+let g:ultisnips_python_style="google"
 
 "########### Airline ##############
 let g:airline#extensions#tabline#enabled = 1
