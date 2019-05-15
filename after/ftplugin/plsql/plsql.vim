@@ -73,3 +73,30 @@ function! PLSQLToggleCase()
 endfunction
 nmap <S-F11> :call PLSQLToggleCase()<cr>
 
+let g:tagbar_type_plsql = {
+    \ 'ctagstype' : 'sql',
+    \ 'kinds' : [
+        \ 'P:packages:1:1',
+        \ 'v:variables:0:1',
+        \ 'd:prototypes:0:1',
+        \ 'c:cursors:0:1',
+        \ 'f:functions:0:1',
+        \ 'F:record fields:0:1',
+        \ 'L:block label:0:1',
+        \ 'p:procedures:0:1',
+        \ 's:subtypes:0:1',
+        \ 't:tables:0:1',
+        \ 'T:triggers:0:1',
+        \ 'i:indexes:0:1',
+        \ 'e:events:0:1',
+        \ 'U:publications:0:1',
+        \ 'R:services:0:1',
+        \ 'D:domains:0:1',
+        \ 'V:views:0:1',
+        \ 'n:synonyms:0:1',
+        \ 'x:MobiLink Table Scripts:0:1',
+        \ 'y:MobiLink Conn Scripts:0:1',
+        \ 'z:MobiLink Properties:0:1'
+    \ ]
+\ }
+
