@@ -25,6 +25,16 @@ snippet ife "Django if with else"
 	$3
 {% endif %}$0
 endsnippet
+snippet if "Django without else"
+{% if ${1:variable} %}
+	$2
+{% endif %}$0
+endsnippet
+snippet for "Django template for loop"
+{% for ${1:variable} in ${2:list} %}
+	$3
+{% endfor %}$0
+endsnippet
 snippet dj "Generic(empty) django template command"
 {% $1 %}$0
 endsnippet
