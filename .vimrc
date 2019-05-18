@@ -13,6 +13,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
+Plug 'albfan/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'bling/vim-airline'
 Plug 'majutsushi/tagbar'
@@ -120,7 +121,7 @@ nmap <S-F7> :let @q="<C-r><C-r>q"
 " Clear highlights
 map <F8> :nohl<cr>
 " If Syntax synchronisation gets confused.
-map <C-F8> :syn sync fromstart<cr>
+map <A-F8> :syn sync fromstart<cr>
 " Show hidden chararcters and trailing whitespace
 map <S-F8> :set invlist<cr>
 " Allow buffer to be connected to a database
@@ -175,6 +176,7 @@ let g:ctrlp_working_path_mode = 'r'
 let g:UltiSnipsExpandTrigger="<C-tab>"
 let g:UltiSnipsListSnippets="<S-tab>"
 let g:UltiSnipsEditSplit="vertical"
+let g:ultisnips_python_style="google"
 
 "########### Airline ##############
 let g:airline#extensions#tabline#enabled = 1
@@ -195,6 +197,8 @@ let g:syntastic_mode_map = {
     \ "active_filetypes": [],
     \ "passive_filetypes": ["python"] }
 
+"########### NerdTree ##############
+let g:NERDTreeIgnore = ['^build$','^dist$','.egg-info$','^htmlcov$','^__pycache__$','.pyc$']
 "########### NVim-R ##############
 "let R_in_buffer = 0
 "########### YCM ##############
