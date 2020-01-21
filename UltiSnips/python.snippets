@@ -539,33 +539,20 @@ endsnippet
 snippet roprop "Read Only Property" b
 @property
 def ${1:name}(self):
-	${2:return self._$1}$0
+	"""$2"""
+	${3:return self._$1}$0
 endsnippet
 
 snippet rwprop "Read write property" b
-def ${1:name}():
-	`!p snip.rv = triple_quotes(snip) if t[2] else ''
-`${2:TODO: Docstring for $1.}`!p
-if t[2]:
-	snip >> 1
+@property
+def ${1:name}(self):
+	"""$2"""
+	${3:return self._$1}
 
-	style = get_style(snip)
-	snip.rv += '\n' + snip.mkline('', indent='')
-	snip += format_return(style)
-	snip.rv += '\n' + snip.mkline('', indent='')
-	snip += triple_quotes(snip)
-else:
-	snip.rv = ""`
-	def fget(self):
-		return self._$1$0
-
-	def fset(self, value):
-		self._$1 = value
-	return locals()
-
-$1 = property(**$1(), doc=$1.__doc__)
+@$1.setter
+def $1(self, value):
+	self._$1 = value$0
 endsnippet
-
 
 ####################
 # If / Else / Elif #
@@ -637,7 +624,13 @@ endsnippet
 ######################
 
 snippet ae "Assert equal" b
-self.assertEqual(${1:${VISUAL:first}},${2:second})
+self.assertEqual(${1:${VISUAL:first}}, ${2:second})
+endsnippet
+snippet ag "Assert greater" b
+self.assertGreater(${1:${VISUAL:first}}, ${2:second})
+endsnippet
+snippet al "Assert less than" b
+self.assertLess(${1:${VISUAL:first}}, ${2:second})
 endsnippet
 
 snippet at "Assert True" b
@@ -649,7 +642,7 @@ self.assertFalse(${1:${VISUAL:expression}})
 endsnippet
 
 snippet aae "Assert almost equal" b
-self.assertAlmostEqual(${1:${VISUAL:first}},${2:second})
+self.assertAlmostEqual(${1:${VISUAL:first}}, ${2:second})
 endsnippet
 
 snippet ar "Assert raises" b
@@ -664,6 +657,28 @@ snippet ann "Assert is not None" b
 self.assertIsNotNone(${1:${VISUAL:expression}})
 endsnippet
 
+snippet setup "unittest setUp method"
+def setUp(self):
+	"""$1"""
+	$0
+endsnippet
+snippet tear "unittest tearDown method"
+def tearDown(self):
+	"""$1"""
+	$0
+endsnippet
+snippet setupc "unittest setUpClass class method"
+@classmethod
+def setUpClass(cls):
+	"""$1"""
+	$0
+endsnippet
+snippet tearc "unittest tearDownClass class method"
+@classmethod
+def tearDownClass(cls):
+	"""$1"""
+	$0
+endsnippet
 snippet testcase "pyunit testcase" b
 class Test${1:Class}(${2:unittest.TestCase}):
 
@@ -677,6 +692,24 @@ class Test${1:Class}(${2:unittest.TestCase}):
 
 	def test_${6:name}(self):
 		${7:${VISUAL:pass}}
+endsnippet
+
+snippet testmodule "Provides framework for a test module" b
+import unittest
+${1:# Import module to be tested}
+
+class Test$2(unittest.TestCase):
+	"""$3"""
+	$4
+
+if __name__ == "__main__":
+	unittest.main(verbosity=2)
+endsnippet
+
+snippet test "An individual test method" b
+def test_$1(self):
+	"""${2:Description of the test}"""
+	$3
 endsnippet
 
 snippet " "triple quoted string (double quotes)" b
