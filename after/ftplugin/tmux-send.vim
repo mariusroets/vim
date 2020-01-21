@@ -1,7 +1,6 @@
 
-let s:cmd = "!tmux send-keys -t default:".b:screen_send_screen_name." "
+let s:cmd = "!tmux send-keys -t prog:".b:screen_send_screen_name." "
 
-    "tmux send-keys -t $DEFAULT:root "anduril1" C-m
 function! SendFile(...)
     if a:0 == 0
         let dir = expand("%:p:h")
