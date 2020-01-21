@@ -62,6 +62,7 @@ set visualbell t_vb=
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set colorcolumn=100
 set number
 set backspace=indent,eol,start
 set showmatch
@@ -189,6 +190,8 @@ let g:pandoc#modules#disabled = ["chdir"]
 
 "########### Latex ##############
 let g:tex_flavor = 'latex'
+let g:vimtex_fold_enabled = 1
+let g:vimtex_format_enabled = 1
 "########### XML ##############
 let g:xml_syntax_folding = 1
 "########### Syntastic ##############
