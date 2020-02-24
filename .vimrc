@@ -54,7 +54,7 @@ set backupdir=~/.vimbackup,.
 set directory=~/.vimbackup,.
 set ignorecase
 set smartcase
-set sessionoptions=blank,buffers,curdir,help,winsize,winpos,resize
+set sessionoptions=blank,buffers,curdir,help
 set switchbuf=useopen,usetab
 set hidden
 " Disable system bell
@@ -192,6 +192,8 @@ let g:pandoc#modules#disabled = ["chdir"]
 let g:tex_flavor = 'latex'
 let g:vimtex_fold_enabled = 1
 let g:vimtex_format_enabled = 1
+let g:vimtex_format_enabled = 1
+let g:vimtex_compiler_latexmk = { 'build_dir' : './texoutput', }
 "########### XML ##############
 let g:xml_syntax_folding = 1
 "########### Syntastic ##############
@@ -206,6 +208,16 @@ let g:NERDTreeIgnore = ['^build$','^dist$','.egg-info$','^htmlcov$','^__pycache_
 "let R_in_buffer = 0
 "########### YCM ##############
 let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_filetype_blacklist = {
+        \ 'tagbar': 1,
+        \ 'notes': 1,
+        \ 'netrw': 1,
+        \ 'unite': 1,
+        \ 'text': 1,
+        \ 'vimwiki': 1,
+        \ 'infolog': 1,
+        \ 'mail': 1
+        \}
 "########### dbext ##############
 let g:dbext_default_profile_pss_themis = 'type=ORA:user=pss:passwd=l3dz3pp3l1n:srvname=themis'
 let g:dbext_default_profile_powi_themis = 'type=ORA:user=powi:passwd=power:srvname=themis'
