@@ -73,6 +73,8 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 if has('gui_running')
     set background=dark
     set lines=35 columns=150
+    set guioptions-=T
+    set guioptions-=m
 else
     " Here we can set some options if we are not using the gui
     set background=dark
@@ -192,8 +194,8 @@ let g:pandoc#modules#disabled = ["chdir"]
 let g:tex_flavor = 'latex'
 let g:vimtex_fold_enabled = 1
 let g:vimtex_format_enabled = 1
-let g:vimtex_format_enabled = 1
 let g:vimtex_compiler_latexmk = { 'build_dir' : './texoutput', }
+let g:vimtex_view_general_viewer = 'zathura'
 "########### XML ##############
 let g:xml_syntax_folding = 1
 "########### Syntastic ##############
