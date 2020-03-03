@@ -75,11 +75,11 @@ if has('gui_running')
     set lines=35 columns=150
     set guioptions-=T
     set guioptions-=m
+    colorscheme solarized
 else
     " Here we can set some options if we are not using the gui
     set background=dark
 endif
-colorscheme solarized
 set wmh=0                 " Minimum window height.
 set wmw=0
 
